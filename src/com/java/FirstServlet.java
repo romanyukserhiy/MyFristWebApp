@@ -41,10 +41,10 @@ public class FirstServlet extends HttpServlet {
 		String genderFemale = request.getParameter("Female");
 		
 		if(request.getParameter("Male") != null){
-			request.setAttribute("Male", genderMale);
+			request.setAttribute("Message", "Shocker!!!, You are a " + genderMale + "!");
 		}
 		else {
-			request.setAttribute("Female", genderFemale);
+			request.setAttribute("Message", "You are a " + genderFemale + ".");
 		}
 		
 		//response.getWriter().println("This finally works");
