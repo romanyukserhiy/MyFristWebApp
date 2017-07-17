@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(urlPatterns = "/first")
+@WebServlet(urlPatterns = "/firstServlet")
 public class FirstServlet extends HttpServlet {
 	// FirstServlet
 	// LoginServlet
@@ -25,4 +25,30 @@ public class FirstServlet extends HttpServlet {
 		request.setAttribute("attribute", "What's up?");
 		request.getRequestDispatcher("WEB-INF/services/first.jsp").forward(request, response);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		//response.getWriter().println("This finally works");
+		String firstName = request.getParameter("firstname");
+		String lastName = request.getParameter("lastname");
+		
+		request.setAttribute("firstname", firstName);
+		request.setAttribute("lastname", lastName);
+		
+		
+		String genderMale = request.getParameter("Male");
+		String genderFemale = request.getParameter("Female");
+		
+		if(request.getParameter("Male") != null){
+			request.setAttribute("Male", genderMale);
+		}
+		else {
+			request.setAttribute("Female", genderFemale);
+		}
+		
+		//response.getWriter().println("This finally works");
+		request.getRequestDispatcher("WEB-INF/services/success.jsp").forward(request, response);
+	}
+ 
 }
